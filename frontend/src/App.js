@@ -1,10 +1,24 @@
-import React from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-const App = props => {
+import Home from './components/layout/Home';
+import Navbar from './components/layout/Navbar';
+import theme from './theme';
+import Footer from './components/layout/Footer';
+
+const App = () => {
   return (
     <Router>
-      <h1>hi</h1>
+      <MuiThemeProvider theme={theme}>
+        <Fragment>
+          <Navbar />
+          <Switch>
+            <Route exact path='/' component={Home} />
+          </Switch>
+          <Footer />
+        </Fragment>
+      </MuiThemeProvider>
     </Router>
   );
 };
