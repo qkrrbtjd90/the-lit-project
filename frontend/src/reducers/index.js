@@ -1,2 +1,1 @@
-import {combinedReducers} from 'redux'
-
+import { combinedReducers } from 'redux';
