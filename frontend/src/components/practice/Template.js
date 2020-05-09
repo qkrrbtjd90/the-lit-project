@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Passage from './Passage';
 import Question from './Question';
+import TestPicker from './TestPicker';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -42,6 +43,7 @@ const Template = () => {
 
   return (
     <Grid className={classes.container} container>
+      <TestPicker />
       <Grid className={classes.item} item xs={12} sm={6}>
         <Paper className={classes.paper}>
           <Passage />

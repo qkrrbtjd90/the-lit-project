@@ -10,6 +10,7 @@ const useStyles = makeStyles(theme => ({
 
 const Footer = () => {
   const classes = useStyles();
+  
   return (
     <footer className={classes.footer}>
       <Typography align='center' variant='h6'>The Lit Project</Typography>

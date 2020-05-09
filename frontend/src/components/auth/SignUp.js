@@ -1,45 +1,41 @@
-import React, { useState } from 'react';
-import { TextField, Button } from '@material-ui/core';
+import React, { useState, Fragment } from 'react';
+import { TextField, Button, Paper } from '@material-ui/core';
 
 const Signup = () => {
+  const auth = false; // change auth to render signup/signin
   const [userData, setuserData] = useState({
-    fName: '',
-    lName: '',
+    name: '',
     email: '',
     password1: '',
     password2: '',
   });
 
   const handleChange = ({ target: { name, value } }) => {
-    setuserData({ ...userData, [name]: value });
+    setuserData({
+      ...userData,
+      [name]: value,
+    });
   };
 
   const handleSumbit = () => {
     console.log('hi');
   };
 
-  const { fName, lName, email } = userData;
+  const { name } = userData;
 
   return (
-    <div>
-      <h1>
-        Hello {fName} {lName}
-      </h1>
-      <p>{email}</p>
-      <TextField
-        helperText='Enter Your First Name'
-        label='First Name'
-        name='fName'
-        onChange={handleChange}
-      />
-      <br />
-      <TextField
-        helperText='Enter Your Last Name'
-        label='Last Name'
-        name='lName'
-        onChange={handleChange}
-      />
-      <br />
+    <Paper>
+      {auth && (
+        <Fragment>
+          <h1>Hello {name}</h1>
+          <TextField
+            helperText='Enter Your Name'
+            label='Name'
+            name='name'
+            onChange={handleChange}
+          />
+        </Fragment>
+      )}
 
       <TextField
         helperText='Enter Your Email'
@@ -57,15 +53,17 @@ const Signup = () => {
       />
       <br />
 
-      <TextField
-        helperText='Confirm Your Password'
-        label='Confirm'
-        name='password2'
-        onChange={handleChange}
-      />
-      <br />
-      <Button onClick={handleSumbit}>Register</Button>
-    </div>
+      {auth && (
+        <TextField
+          helperText='Confirm Your Password'
+          label='Confirm'
+          name='password2'
+          onChange={handleChange}
+        />
+      )}
+
+      <Button onClick={handleSumbit}>{auth ? 'Login' : 'Register'}</Button>
+    </Paper>
   );
 };
 
