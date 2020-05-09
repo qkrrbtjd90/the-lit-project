@@ -6,8 +6,8 @@ import Blog from './components/blog/Blog';
 import Footer from './components/layout/Footer';
 import Home from './components/layout/Home';
 import Navbar from './components/layout/Navbar';
+import Signin from './components/auth/SignUp';
 import Template from './components/practice/Template';
-import UserForm from './components/auth/UserForm';
 
 const App = () => {
   return (
@@ -19,7 +19,7 @@ const App = () => {
           <Route exact path='/' component={Home} />
           <Route path='/practice' component={Template} />
           <Route path='/blog' component={Blog} />
-          <Route path='/signin' component={UserForm} />
+          <Route path='/signin' component={Signin} />
         </Switch>
         <Footer />
       </Fragment>

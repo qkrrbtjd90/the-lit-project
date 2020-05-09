@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
 import FormUserDetails from './FormUserDetails';
+import FormPersonalDetails from './FormPersonalDeta';
+import Confirm from './Confirm';
+import Success from './Success';
 
 const UserForm = () => {
   const [userData, setUserData] = useState({
@@ -14,52 +17,58 @@ const UserForm = () => {
   });
 
   const nextStep = () => {
-    const { step } = userData;
-
     setUserData({
-      step: step + 1,
+      ...userData,
+      step: userData.step + 1,
     });
   };
 
   const prevStep = () => {
-    const { step } = userData;
-
     setUserData({
-      step: step - 1,
+      ...userData,
+      step: userData.step - 1,
     });
   };
 
   const handleChange = ({ target: { name, value } }) => {
-    console.log(value, 'handlechage');
-    // console.log(name, 'handlechage');
-
     setUserData({
       ...userData,
       [name]: value,
     });
   };
 
-  const { step, firstName, lastName, email, occupation, city, bio } = userData;
-  const values = { firstName, lastName, email, occupation, city, bio };
-
-  switch (step) {
+  switch (userData.step) {
     case 1:
       return (
         <FormUserDetails
           nextStep={nextStep}
           handleChange={handleChange}
-          values={values}
+          userData={userData}
         />
       );
     case 2:
-      return <h1>FormUserDetails</h1>;
+      return (
+        <FormPersonalDetails
+          nextStep={nextStep}
+          prevStep={prevStep}
+          handleChange={handleChange}
+          userData={userData}
+        />
+      );
     case 3:
-      return <h1>Confrim</h1>;
+      return (
+        <Confirm
+          nextStep={nextStep}
+          prevStep={prevStep}
+          handleChange={handleChange}
+          userData={userData}
+        />
+      );
     case 4:
-      return <h1>Success</h1>;
+      return <Success />;
+    default:
+      console.log('Sign up');
   }
-
-  return <div></div>;
 };
 
 export default UserForm;
